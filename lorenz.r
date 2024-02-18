@@ -11,9 +11,11 @@ pacman::p_load(
   ggplot2,
   ggthemes,
   gganimate,
-  gg3D,
-  gridExtra
+  gridExtra,
+  remotes
 )
+
+remotes::install_github("AckerDWM/gg3D")
 
 ## System of equations
 loreq <- function(time, state, param) {
