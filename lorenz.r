@@ -61,12 +61,15 @@ allproj <- rbind(plot_project("X", "Z"),
                  plot_project("X", "Y"),
                  plot_project("Y", "Z"))
 
-makeplot <- function(projpat = c("XZ", "XY", "YZ"), trip = F, data = allproj) {
+makeplot <- function(projpat = c("XZ", "XY", "YZ"),
+                     trip = FALSE,
+                     lw = 0.2,
+                     data = allproj) {
 
   tmp <- data[projection %in% projpat]
   basep <- ggplot(tmp, aes(plotx, ploty, color = time)) +
-    geom_path(linewidth = 0.2) +
-    scale_color_viridis_c() +
+    geom_path(linewidth = lw) +
+    scale_color_viridis_c(option = "A") +
     guides(color = "none") +
     theme_void()
 
@@ -80,10 +83,10 @@ makeplot <- function(projpat = c("XZ", "XY", "YZ"), trip = F, data = allproj) {
 }
 
 
-l2d_xy <- makeplot("XY")
-l2d_xz <- makeplot("XZ")
-l2d_yz <- makeplot("YZ")
-l2d_yt <- makeplot(trip = T)
+l2d_xy <- makeplot("XY", lw = 0.1)
+l2d_xz <- makeplot("XZ", lw = 0.1)
+l2d_yz <- makeplot("YZ", lw = 0.1)
+l2d_yt <- makeplot(trip = TRUE)
 
 basew <- 1.25
 baseh <- 1.25
